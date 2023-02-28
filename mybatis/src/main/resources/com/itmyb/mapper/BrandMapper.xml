@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    nameplace:名称空间
+-->
+<mapper namespace="com.itmyb.mapper.BrandMapper">
+
+
+<!--    如果因名字不同而不能加入list可以用此方法-->
+<!--    id:唯一标识-->
+<!--    type：需要更改的类型,支持别名-->
+    <resultMap id="BrandMap" type="com.itmyb.pojo.Brand">
+<!--        id是主键字段的修改-->
+<!--        result是普通字段的修改-->
+        <result column="brand_name" property="brandName"/>
+        <result column="company_name" property="companyName"/>
+    </resultMap>
+
+
+    <select id="selectAll" resultMap="BrandMap">
+        select *
+        from brand;
+    </select>
+
+<!--    参数占位符：-->
+<!--    1.#{}：会将其替换成？，防止sql注入-->
+<!--    2.${}：拼sql，会有sql注入问题-->
+    <select id="selectbyid" resultMap="BrandMap">
+        select * from brand where id=#{id};
+    </select>
+
+<!-- 多条件动态查询-->
+    <select id="selectlike" resultMap="BrandMap">
+
+        select * from brand
+        <where>
+            <if test="status!=null">
+                and status=#{status}
+            </if>
+            <if test="companyName!=null and companyName!=''">
+                and company_name like #{companyName}
+            </if>
+            <if test="brandName!=null and brandName!=''">
+                and brand_name like #{brandName}
+            </if>
+        </where>
+
+<!--  单条件动态查询-->
+    </select>
+    <select id="selectConditionSingle" resultMap="BrandMap">
+        select * from brand
+        <where>
+<!--        类似swich-->
+       <choose>
+            <when test="status!=null">
+                status=#{status}
+            </when>
+            <when test="companyName!=null and companyName!=''">
+                company_name like #{companyName}
+            </when>
+            <when test="brandName!=null and brandName!=''">
+                brand_name like #{brandName}
+            </when>
+        </choose>
+       </where>
+    </select>
+
+<!--    返回主键值-->
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        insert into brand (brand_name,company_name,ordered,description,status)
+        values (#{brandName},#{companyName},#{ordered},#{description},#{status})
+    </insert>
+
+<!--    动态修改数据-->
+    <update id="updateALl">
+        update brand
+        <set>
+        <if test="brandName!=null and brandName!=''" >
+            brand_name=#{brandName},
+        </if>
+        <if test="companyName!=null and companyName!=''">
+            company_name=#{companyName},
+        </if>
+        <if test="ordered!=null">
+            ordered =#{ordered},
+        </if>
+        <if test="description!=null and description!=''">
+            description =#{description},
+        </if>
+        <if test="status!=null">
+            status =#{status}
+        </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <delete id="deleteone">
+        delete from brand where id=#{id}
+    </delete>
+
+<!--    批量删除-->
+    <delete id="deletemore">
+        delete from brand
+        where id in (
+        <foreach collection="ids" item="id" separator=",">
+            #{id}
+        </foreach>
+        );
+    </delete>
+
+    <!--    <select id="selectAll" resultType="com.itmyb.pojo.Brand">-->
+<!--        select *-->
+<!--        from brand;-->
+<!--    </select>-->
+</mapper>

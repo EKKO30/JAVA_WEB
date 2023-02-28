@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    nameplace:名称空间
+-->
+<mapper namespace="com.itmyb.mapper.tb_userMapper">
+    <select id="selectAll" resultType="com.itmyb.pojo.TUser">
+        select * from tb_user;
+    </select>
+</mapper>
