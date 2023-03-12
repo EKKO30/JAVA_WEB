@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="huihua-demo:war">
+    <output-path>$PROJECT_DIR$/huihua-demo/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>huihua-demo</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="huihua-demo-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="huihua-demo:war exploded" />
+    </root>
+  </artifact>
+</component>

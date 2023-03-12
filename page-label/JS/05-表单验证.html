@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单验证</title>
+</head>
+
+<style>
+
+    .error{
+        color: red;
+
+    }
+</style>
+<body>
+
+<form action="#" method="" id="formID">
+
+    <label for="username">用户名:</label>
+    <input type="text" name="用户名" id="username">
+    <span id="username_err" style="display: none" class="error">用户名长度应该为2-9</span><br>
+
+    <label for="password">密码:</label>
+    <input type="text" name="密码" id="password">
+    <span id="password_err" style="display: none" class="error">密码长度应该为2-9</span>
+    <br>
+
+    <label for="PhoneNumber">电话号码:</label>
+    <input type="text" name="电话号码" id="PhoneNumber">
+    <span id="PhoneNumber_err" style="display: none" class="error">电话号码长度应为11,必须都是数字</span>
+    <br>
+
+    <br>
+    <input type="submit" value="注册">
+</form>
+
+
+<script>
+    //1.验证用户名是否合理
+    //1.1获取用户名输入框
+    var usernameInput=document.getElementById("username");
+
+    //1.2绑定onblur，失去焦点事件
+    usernameInput.onblur=Checkusername
+    function Checkusername(){
+        //获得数据
+        var username=usernameInput.value.trim();
+        var reg=/^\w{2,9}$/
+
+        //验证用户名是否合规
+        var Uflag=reg.test(username)
+     //   var Uflag=username.length>=2 && username.length<10;
+        if(Uflag){
+            //合规
+            document.getElementById("username_err").style.display='none';
+        }else {
+            //不合规
+            document.getElementById("username_err").style.display='';
+        }
+        return Uflag;
+    }
+
+    var passwordInput=document.getElementById("password");
+    passwordInput.onblur=Checkpassword
+        function Checkpassword(){
+        var password=passwordInput.value.trim();
+        var reg1=/^\w{2,9}$/;
+
+        var Pflag=reg1.test(password)
+    //    var Pflag=password.length>=2 && password.length<10
+
+        //验证密码是否合规
+
+        if(Pflag){
+            //合规
+            document.getElementById("password_err").style.display='none';
+        }else {
+            //不合规
+            document.getElementById("password_err").style.display='';
+        }
+        return Pflag
+    }
+
+    var PhoneNumberInput=document.getElementById("PhoneNumber")
+    PhoneNumberInput.onblur=CheckPhoneNumber
+        function CheckPhoneNumber(){
+        var phonen=PhoneNumberInput.value.trim();
+        var reg2=/^\d{11}$/;
+
+        //验证电话号码是否合规
+        var PHflag=reg2.test(phonen);
+
+        if(PHflag){
+            //合规
+            document.getElementById("PhoneNumber_err").style.display='none';
+        }else {
+            //不合规
+            document.getElementById("PhoneNumber_err").style.display='';
+        }
+
+        return PHflag
+    }
+
+    var Fform=document.getElementById("formID")
+    Fform.onsubmit=function (){
+
+        var flag=CheckPhoneNumber() && Checkpassword() && Checkusername;
+
+        return flag
+    }
+</script>
+
+</body>
+</html>

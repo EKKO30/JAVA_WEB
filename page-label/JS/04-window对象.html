@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>windows对象</title>
+</head>
+<body>
+
+<input type="button" onclick="on()" value="开灯">
+<img id="myimg" border="0" src="../src/off.gif" style="text-align:center;">
+<input type="button" onclick="off()" value="关灯">
+<script>
+
+    //confirm：点击确定则返回true，点击取消返回false
+    // var flag=confirm("确认删除")
+    // if(flag){
+    //
+    // }
+
+    //setTimeout(function,毫秒值) : 在一定的时间间隔后执行一个function，只执行一次
+    // setInterval(function,毫秒值) :在一定的时间间隔后执行一个function，循环执行
+    // setTimeout(function (){
+    //     alert("执行一次")
+    // },1000)
+    // setInterval(function (){
+    //     alert("循环执行")
+    // },1000)
+
+    function on(){
+        document.getElementById('myimg').src="../src/on.gif"
+    }
+
+    function off(){
+        document.getElementById('myimg').src="../src/off.gif"
+    }
+
+    var a=0
+    setInterval(function (){
+        if(a%2==0){
+            on()
+        }else {
+            off()
+        }
+        a++
+    },1000);
+</script>
+</body>
+</html>

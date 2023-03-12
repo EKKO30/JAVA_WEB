@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="fIiter-demo:war">
+    <output-path>$PROJECT_DIR$/fIiter-demo/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>fIiter-demo</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="fliter-demo-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="fIiter-demo:war exploded" />
+    </root>
+  </artifact>
+</component>

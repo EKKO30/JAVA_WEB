@@ -1,0 +1,11 @@
+com\itheima\pojo\PageBean.class
+com\itheima\util\SqlSessionFactoryUtils.class
+com\itheima\mapper\BrandMapper.class
+com\itheima\service\impl\BrandServiceImpl.class
+com\itheima\web\Servlet\BaseServlet.class
+com\itheima\web\Servlet\SelectAllServlet.class
+com\itheima\web\Servlet\BrandServlet.class
+com\itheima\web\Servlet\UserServlet.class
+com\itheima\service\BrandService.class
+com\itheima\web\Servlet\addServlet.class
+com\itheima\pojo\Brand.class
